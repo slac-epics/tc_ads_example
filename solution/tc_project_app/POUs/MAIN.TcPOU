@@ -17,11 +17,37 @@ VAR
 	bOutput6 AT %Q*: BOOL:= TRUE;
 	bOutput7 AT %Q*: BOOL:= TRUE;
 	bOutput8 AT %Q*: BOOL:= TRUE;
+	
+	//Test variables
+	fAmplitude:LREAL:=1;
+	fTest: LREAL:=0;
+	iTest: INT:=0;
+	bTest: BYTE:=0;
+	sTest: STRING:= 'Hope it works!';
+	fTestArray: ARRAY [0..99] OF LREAL;
+	iIndex:INT:=0;
+	iTestError:INT:=0;
+	ftest2: LREAL;
+	fTestArray2: ARRAY [0..9] OF LREAL;
+	Int8Array: ARRAY [0..9] OF SINT;
 END_VAR
 
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[ACT();]]></ST>
+      <ST><![CDATA[ACT();
+
+//Update variables
+iTest:=iTest+1;
+fTest:=fAmplitude*SIN(iTest*2*pi/360);
+bTest:=bTest+1;
+iIndex:=iIndex+1;
+
+IF iIndex>99 THEN
+	iIndex:=0;
+END_IF
+//Make memmove to get continious signal!
+MEMMOVE(destAddr:=ADR(fTestArray[0]),srcAddr:=ADR(fTestArray[1]),n:=99*8);
+fTestArray[99]:=fTest;]]></ST>
     </Implementation>
     <Action Name="ACT" Id="{240e8099-f921-46d2-bfb2-289ee76e4611}">
       <Implementation>
@@ -885,6 +911,8 @@ END_VAR
     </Action>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
+      <LineId Id="38" Count="11" />
+      <LineId Id="34" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
