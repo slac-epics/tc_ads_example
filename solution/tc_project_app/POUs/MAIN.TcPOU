@@ -21,7 +21,7 @@ VAR
 	//Test variables
 	fAmplitude:LREAL:=1;
 	fTest: LREAL:=0;
-	iTest: INT:=0;
+	iCycleCounter: INT:=0;
 	bTest: BYTE:=0;
 	sTest: STRING:= 'Hope it works!';
 	fTestArray: ARRAY [0..99] OF LREAL;
@@ -39,8 +39,8 @@ END_VAR
       <ST><![CDATA[ACT();
 
 //Update variables
-iTest:=iTest+1;
-fTest:=fAmplitude*SIN(iTest*2*pi/360);
+iCycleCounter:=iCycleCounter+1;
+fTest:=fAmplitude*SIN(iCycleCounter*2*pi/360);
 bTest:=bTest+1;
 iIndex:=iIndex+1;
 
